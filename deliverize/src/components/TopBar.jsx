@@ -7,7 +7,8 @@ import MenuIcon from '@mui/icons-material/Menu';
 
 const pages = {
     "Home": URI.HOME,
-    "Companies": URI.COMPANIES
+    "Companies": URI.COMPANIES,
+    "Rider Management": URI.RIDERS
 }
 
 
