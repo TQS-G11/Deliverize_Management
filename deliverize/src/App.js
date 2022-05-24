@@ -9,6 +9,7 @@ import LoginForm from "./components/LoginForm";
 import URI from "./constants/URI";
 import CompaniesPage from "./containers/CompaniesPage";
 import RidersManagementPage from "./containers/RidersManagementPage";
+import RiderDetailsPage from "./containers/RiderDetailsPage";
 
 function App() {
     const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
@@ -18,10 +19,6 @@ function App() {
             mode: prefersDarkMode ? "dark" : "light",
         },
     }), [prefersDarkMode],);
-
-    useEffect(() => {
-        document.title = "Deliverize Management";
-    })
 
     return (
         <ThemeProvider theme={theme}>
@@ -44,6 +41,7 @@ const getPublicRoutes = () => {
             <Route path={URI.LOGIN} element={<LoginForm/>}/>
             <Route path={URI.COMPANIES} element={<CompaniesPage/>}/>
             <Route path={URI.RIDERS} element={<RidersManagementPage/>}/>
+            <Route path={`${URI.RIDERS}/:id`} element={<RiderDetailsPage/>}/>
         </Routes>
     );
 };
