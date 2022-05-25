@@ -1,6 +1,6 @@
 import {Avatar, CircularProgress, Grid, Paper, Rating, Typography} from "@mui/material";
 
-const RiderDetails = ({details}) => {
+const CompanyDetails = ({details}) => {
     return (
         <Paper sx={{p: 2}}>
             <Grid container spacing={2}>
@@ -14,16 +14,19 @@ const RiderDetails = ({details}) => {
                                 <Typography variant="h4">{details["name"]}</Typography>
                             </Grid>
                             <Grid container item justifyContent="center" xs={12}>
-                                <Rating precision={0.1}
-                                        value={details["rating"]}
-                                        disabled={true}
-                                />
+                                <Typography>ID: {details["id"]}</Typography>
                             </Grid>
                             <Grid container item justifyContent="center" xs={12}>
-                                <Typography variant="h6">Username: {details["username"]}</Typography>
+                                <Typography variant="h6">Status: {details["status"]}</Typography>
                             </Grid>
                             <Grid container item justifyContent="center" xs={12}>
-                                <Typography variant="h6">{details["nDeliveries"]} deliveries made</Typography>
+                                <Typography variant="h6">Deliveries: {details["nDeliveries"]}</Typography>
+                            </Grid>
+                            <Grid container item justifyContent="center" xs={12}>
+                                <Typography variant="h6">Registered: {details["registered"]}</Typography>
+                            </Grid>
+                            <Grid container item justifyContent="center" xs={12}>
+                                <Typography align="justify">{details["description"]}</Typography>
                             </Grid>
                         </>
                     ) : (
@@ -37,4 +40,4 @@ const RiderDetails = ({details}) => {
     );
 }
 
-export default RiderDetails;
+export default CompanyDetails;

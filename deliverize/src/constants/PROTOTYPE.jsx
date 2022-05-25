@@ -141,6 +141,78 @@ const PROTOTYPE = {
             "nDeliveries": 666,
             "id": 12
         },
+    ],
+    COMPANY_DETAILS: {
+        "id": 1,
+        "name": "Zap",
+        "description": "What's with these homies, dissing my girl?\n" +
+            "Why do they gotta front?\n" +
+            "What did we ever do to these guys\n" +
+            "That made them so violent?\n" +
+            "Woo-hoo\n" +
+            "But you know I'm yours\n" +
+            "Woo-hoo\n" +
+            "And I know you're mine\n" +
+            "Woo-hoo\n" +
+            "(And that's for all time)\n" +
+            "Ooh-wee-hoo, I look just like Buddy Holly\n" +
+            "Oh-oh, and you're Mary Tyler Moore\n" +
+            "I don't care what they say about us anyway\n" +
+            "I don't care about that\n" +
+            "Don't you ever fear, I'm always near\n" +
+            "I know that you need help\n" +
+            "Your tongue is twisted, your eyes are slit\n" +
+            "You need a guardian\n" +
+            "Woo-hoo\n" +
+            "And you know I'm yours\n" +
+            "Woo-hoo\n" +
+            "And I know you're mine\n" +
+            "Woo-hoo\n" +
+            "(And that's for all time)\n" +
+            "Ooh-wee-hoo, I look just like Buddy Holly\n" +
+            "Oh-oh, and you're Mary Tyler Moore\n" +
+            "I don't care what they say about us anyway\n" +
+            "I don't care about that\n" +
+            "I don't care about that\n" +
+            "Bang, bang, a knock on the door\n" +
+            "Another big bang and you're down on the floor\n" +
+            "Oh no! What do we do?\n" +
+            "Don't look now, but I lost my shoe\n" +
+            "I can't run, and I can't kick\n" +
+            "What's the matter babe, are you feeling sick?\n" +
+            "What's the matter, what's the matter, what's the matter you?\n" +
+            "What's the matter babe, are you feeling blue?\n" +
+            "Ooh-wee-hoo, I look just like Buddy Holly\n" +
+            "Oh-oh, and you're Mary Tyler Moore\n" +
+            "I don't care what they say about us anyway\n" +
+            "I don't care about that\n" +
+            "I don't care about that\n" +
+            "I don't care about that\n" +
+            "I don't care about that",
+        "img": "https://upload.wikimedia.org/wikipedia/pt/4/4f/Weezer_-_Blue_Album.jpg",
+        "status": "Active",
+        "nDeliveries": 3932,
+        "registered": "2022-05-25T15:33:21Z"
+    },
+    RIDER_DELIVERIES: [
+        {
+            "id": 1,
+            "company": "Zap",
+            "companyImg": "https://upload.wikimedia.org/wikipedia/pt/4/4f/Weezer_-_Blue_Album.jpg",
+            "orderDateTime": "2022-05-24T12:25:54Z",
+            "deliveryDateTime": "2022-05-24T12:38:13Z",
+            "buyer": "Walter White"
+        }
+    ],
+    COMPANY_DELIVERIES: [
+        {
+            "id": 1,
+            "driver": "Dwight Fairfield",
+            "driverImg": "https://digistatement.com/wp-content/uploads/2021/10/Dwight-1.png",
+            "orderDateTime": "2022-05-24T12:25:54Z",
+            "deliveryDateTime": "2022-05-24T12:38:13Z",
+            "buyer": "Walter White"
+        }
     ]
 }
 

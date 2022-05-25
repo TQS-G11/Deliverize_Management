@@ -1,10 +1,17 @@
 import {DataGrid} from "@mui/x-data-grid";
 import {Avatar, Button, Typography} from "@mui/material";
 import {useState} from "react";
+import URI from "../constants/URI";
+import {useNavigate} from "react-router-dom";
 
 const CompaniesDataGrid = ({companies}) => {
+    const navigate = useNavigate();
+
     const [pageSize, setPageSize] = useState(10);
+
     const statuses = ["Active", "Awaiting Approval", "Blacklisted"];
+
+    const handleOnCellClick = (params) => navigate(`${URI.COMPANIES}/${params.id}`);
 
     const companyActionButton = (row) => {
         switch (row.status) {
@@ -45,6 +52,7 @@ const CompaniesDataGrid = ({companies}) => {
             pagination
             autoHeight
             disableSelectionOnClick
+            onCellClick={handleOnCellClick}
         />
     );
 }

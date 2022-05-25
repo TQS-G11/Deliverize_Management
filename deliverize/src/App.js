@@ -10,6 +10,7 @@ import URI from "./constants/URI";
 import CompaniesPage from "./containers/CompaniesPage";
 import RidersManagementPage from "./containers/RidersManagementPage";
 import RiderDetailsPage from "./containers/RiderDetailsPage";
+import CompanyDetailsPage from "./containers/CompanyDetailsPage";
 
 function App() {
     const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
@@ -42,6 +43,7 @@ const getPublicRoutes = () => {
             <Route path={URI.COMPANIES} element={<CompaniesPage/>}/>
             <Route path={URI.RIDERS} element={<RidersManagementPage/>}/>
             <Route path={`${URI.RIDERS}/:id`} element={<RiderDetailsPage/>}/>
+            <Route path={`${URI.COMPANIES}/:id`} element={<CompanyDetailsPage/>}/>
         </Routes>
     );
 };

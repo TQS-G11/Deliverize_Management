@@ -1,26 +1,26 @@
 import {useParams} from "react-router-dom";
-import {Box, Grid, Typography} from "@mui/material";
-import RiderDetails from "../components/RiderDetails";
-import RiderDeliveriesDataGrid from "../components/RiderDeliveriesDataGrid";
 import PROTOTYPE from "../constants/PROTOTYPE";
+import {Box, Grid, Typography} from "@mui/material";
+import CompanyDetails from "../components/CompanyDetails";
 import {useEffect, useState} from "react";
+import CompanyDeliveriesDataGrid from "../components/CompanyDeliveriesDataGrid";
 
-const RiderDetailsPage = () => {
+const CompanyDetailsPage = () => {
     const {id} = useParams();
 
     const [details, setDetails] = useState({});
     const [deliveries, setDeliveries] = useState([]);
 
     useEffect(() => {
-        setDetails(PROTOTYPE.RIDER_DETAILS);
-        setDeliveries(PROTOTYPE.RIDER_DELIVERIES);
+        setDetails(PROTOTYPE.COMPANY_DETAILS);
+        setDeliveries(PROTOTYPE.COMPANY_DELIVERIES);
     }, []);
 
     return (
         <Grid container justifyContent="center">
             <Grid item container justifyContent="center" xs={12}>
-                <Box sx={{m: 2}} maxWidth={500}>
-                    <RiderDetails details={details}/>
+                <Box sx={{m: 2}} maxWidth={900}>
+                    <CompanyDetails details={details}/>
                 </Box>
             </Grid>
             <Grid item xs={12}>
@@ -28,13 +28,11 @@ const RiderDetailsPage = () => {
             </Grid>
             <Grid item xs={12}>
                 <Box sx={{m: 2}}>
-                    <RiderDeliveriesDataGrid deliveries={deliveries}/>
+                    <CompanyDeliveriesDataGrid deliveries={deliveries}/>
                 </Box>
             </Grid>
         </Grid>
     );
-
-
 }
 
-export default RiderDetailsPage;
+export default CompanyDetailsPage;
