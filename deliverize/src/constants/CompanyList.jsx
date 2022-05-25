@@ -1,15 +1,13 @@
 import * as React from 'react';
-import {styled} from '@mui/material/styles';
-import Box from '@mui/material/Box';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import IconButton from '@mui/material/IconButton';
-import DeleteIcon from '@mui/icons-material/Delete';
+import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import {useEffect} from "react";
-import {Avatar, ListItemAvatar} from "@mui/material";
+import {Avatar, Grid, ListItemAvatar} from "@mui/material";
 
-const CompanyList = () => {
+const CompanyList = ({companies, buttonIcon, buttonOnClick}) => {
     const prototypeCompanies = [
         {
             "name": "Zap",
@@ -38,38 +36,42 @@ const CompanyList = () => {
         }
     ];
 
-    const [companies, setCompanies] = React.useState([]);
+    // const [companies, setCompanies] = React.useState([]);
+    //
+    // useEffect(() => {
+    //     setCompanies(prototypeCompanies);
+    // }, []);
 
-    useEffect(() => {
-        setCompanies(prototypeCompanies);
-    }, []);
-
-    const removeCompany = (name) => {
-        console.log(`Removing company: ${name}`);
-        setCompanies(companies.filter(company => company.name !== name));
-    }
+    // const removeCompany = (name) => {
+    //     console.log(`Removing company: ${name}`);
+    //     setCompanies(companies.filter(company => company.name !== name));
+    // }
 
     return (
-        <List>
-            {companies.map(company =>
-                <ListItem
-                    key={company.name}
-                    secondaryAction={
-                        <IconButton edge="end" aria-label="delete" onClick={() => removeCompany(company.name)}>
-                            <DeleteIcon/>
-                        </IconButton>
-                    }
-                >
-                    <ListItemAvatar>
-                        <Avatar src={company.img} />
-                    </ListItemAvatar>
-                    <ListItemText
-                        primary={company.name}
-                        secondary={company.description}
-                    />
-                </ListItem>
-            )}
-        </List>
+        <Grid container>
+            <Grid item>
+                <List>
+                    {companies.map(company =>
+                        <ListItem
+                            key={company.name}
+                            secondaryAction={
+                                <IconButton edge="end" aria-label="delete" onClick={() => console.log("foo")}>
+                                    <RemoveCircleIcon/>
+                                </IconButton>
+                            }
+                        >
+                            <ListItemAvatar>
+                                <Avatar src={company.img} />
+                            </ListItemAvatar>
+                            <ListItemText
+                                primary={company.name}
+                                secondary={company.description}
+                            />
+                        </ListItem>
+                    )}
+                </List>
+            </Grid>
+        </Grid>
     );
 }
 

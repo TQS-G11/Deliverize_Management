@@ -1,14 +1,21 @@
-import {Box, Grid, Paper, Typography} from "@mui/material";
-import CompanyList from "../constants/CompanyList";
+import {Grid, Paper} from "@mui/material";
+import CompaniesDataGrid from "../components/CompaniesDataGrid";
+import {useEffect, useState} from "react";
+import PROTOTYPE from "../constants/PROTOTYPE";
 
 const CompaniesPage = () => {
+    const [companies, setCompanies] = useState([]);
+
+    useEffect(() => {
+        setCompanies(PROTOTYPE.COMPANIES);
+    }, []);
+
     return (
-        <Grid container justifyContent="center">
-            <Paper sx={{m: 2, maxWidth: 500}}>
-                <Typography variant="h6" sx={{textAlign: "center"}}>Registered Companies</Typography>
-                <CompanyList/>
-            </Paper>
-        </Grid>
+        <Paper sx={{m: 2}}>
+            <Grid container justifyContent="center">
+                <CompaniesDataGrid companies={companies}/>
+            </Grid>
+        </Paper>
     );
 }
 

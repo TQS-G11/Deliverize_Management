@@ -1,22 +1,6 @@
-import {useEffect, useState} from "react";
 import {Avatar, CircularProgress, Grid, Paper, Rating, Typography} from "@mui/material";
 
-const RiderDetails = ({riderId}) => {
-    const [details, setDetails] = useState({});
-
-    const prototypeRiderDetails = {
-        "username": "babydweet",
-        "name": "Dwight Fairfield",
-        "pfp": "https://digistatement.com/wp-content/uploads/2021/10/Dwight-1.png",
-        "rating": 4.0,
-        "nDeliveries": 1984,
-        "id": 1
-    };
-
-    useEffect(() => {
-        setDetails(prototypeRiderDetails);
-    }, []);
-
+const RiderDetails = ({details}) => {
     return (
         <Paper sx={{p: 2}}>
             <Grid container spacing={2}>
