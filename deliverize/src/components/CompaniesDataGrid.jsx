@@ -26,18 +26,24 @@ const CompaniesDataGrid = ({companies}) => {
         }
     }
 
+    const navigateToCompany = (companyId) => navigate(`${URI.COMPANIES}/${companyId}`);
+
     const columns = [
         {
             field: "img", headerName: "",
-            renderCell: (params) => <Avatar src={params.row.img}/>
+            renderCell: (params) => <Avatar src={params.row.img} onClick={() => navigateToCompany(params.row.id)}/>
         },
-        {field: "name", headerName: "Name", flex: 1},
+        {
+            field: "name", headerName: "Name", flex: 1,
+            renderCell: (params) => <Typography
+                onClick={() => navigateToCompany(params.row.id)}>{params.row.name}</Typography>
+        },
         {field: "description", headerName: "Description", flex: 1},
         {field: "nDeliveries", headerName: "# Deliveries", type: "number", flex: 1},
         {field: "id", headerName: "ID", flex: 1},
         {field: "status", headerName: "Status", type: "singleSelect", valueOptions: statuses, flex: 1},
         {
-            field: "", headerName: "Action", flex: 1,
+            field: null, headerName: "Action", flex: 1, sortable: false, filterable: false,
             renderCell: (params) => companyActionButton(params.row)
         },
     ];
@@ -52,7 +58,6 @@ const CompaniesDataGrid = ({companies}) => {
             pagination
             autoHeight
             disableSelectionOnClick
-            onCellClick={handleOnCellClick}
         />
     );
 }
