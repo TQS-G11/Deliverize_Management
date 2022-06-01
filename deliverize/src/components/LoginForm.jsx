@@ -15,6 +15,9 @@ import URI from "../constants/URI";
 // import {login} from "../api/PublicApi";
 import {useNavigate} from "react-router-dom";
 
+import axios from "axios";
+import {useCookies} from "react-cookie";
+
 const LoginForm = () => {
     const navigate = useNavigate();
 
@@ -40,23 +43,39 @@ const LoginForm = () => {
 
     const onLogin = (username, password) => {
         console.log(`username: ${username}, password: ${password}`);
-        // login(username, password)
-        //     .then((response) => {
-        //         const {token} = response.data;
-        //         window.localStorage.setItem("token", token);
-        //         console.log(`stored token ${token}`);
-        //         window.localStorage.setItem("username", username);
-        //         if (["/login", "/signup"].includes(window.location.pathname))
-        //             navigate(URI.HOME);
-        //         window.location.reload();
-        //     })
-        //     .catch((error) => {
-        //         let data = error.response["data"];
-        //         if ("non_field_errors" in data)
-        //             setErrorMsg(data["non_field_errors"]);
-        //         setUsernameErrorMsg(data["username"] ?? "");
-        //         setPasswordErrorMsg(data["password"] ?? "");
-        //     });
+        const userLogin = {
+            username: username,
+            password: password
+        }
+        const headers = {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+            // "Origin":"http://localhost:3000/"
+
+        }
+        axios.post(`${process.env.REACT_APP_DELIVERIZE_API_URL}/api/users/login`, userLogin, {
+            headers: headers
+        })
+        // fetch()
+            .then(response => response.data)
+            .then(response => {
+                console.log("login response", response)
+                let token = response.token.token
+                window.localStorage.setItem("token", token);
+                console.log(`stored token ${token}`);
+                window.localStorage.setItem("username", username);
+                if (["/login", "/signup"].includes(window.location.pathname))
+                    navigate(URI.HOME);
+                window.location.reload();
+            })
+            .catch((error) => {
+                let data = error.response["data"];
+                if ("non_field_errors" in data)
+                    setErrorMsg(data["non_field_errors"]);
+                setUsernameErrorMsg(data["username"] ?? "");
+                setPasswordErrorMsg(data["password"] ?? "");
+            });
     };
 
 
