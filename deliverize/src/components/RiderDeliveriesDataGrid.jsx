@@ -9,7 +9,13 @@ const RiderDeliveriesDataGrid = ({deliveries}) => {
             renderCell: (params) => <Avatar src={params.row.companyImg}/>,
         },
         {field: "company", headerName: "Company", flex: 1},
-        {field: "orderDateTime", headerName: "Ordered", type: "dateTime", flex: 1, valueGetter: ({value}) => value && new Date(value)},
+        {
+            field: "orderDateTime",
+            headerName: "Ordered",
+            type: "dateTime",
+            flex: 1,
+            valueGetter: ({value}) => value && new Date(value)
+        },
         {
             field: "deliveryDateTime",
             headerName: "Delivered",
@@ -24,25 +30,16 @@ const RiderDeliveriesDataGrid = ({deliveries}) => {
     const [pageSize, setPageSize] = useState(10);
 
     return (
-        <>
-            {
-                deliveries.length === 0 ?
-                    (
-                        <CircularProgress/>
-                    ) : (
-                        <DataGrid
-                            rows={deliveries}
-                            columns={columns}
-                            pageSize={pageSize}
-                            onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
-                            rowsPerPageOptions={[5, 10, 15]}
-                            pagination
-                            autoHeight
-                            disableSelectionOnClick
-                        />
-                    )
-            }
-        </>
+        <DataGrid
+            rows={deliveries}
+            columns={columns}
+            pageSize={pageSize}
+            onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+            rowsPerPageOptions={[5, 10, 15]}
+            pagination
+            autoHeight
+            disableSelectionOnClick
+        />
     );
 };
 

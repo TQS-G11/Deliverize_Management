@@ -40,31 +40,23 @@ const DeliveriesDataGrid = ({deliveries}) => {
         {field: "origin", headerName: "Origin", flex: 1},
         {field: "destination", headerName: "Destination", flex: 1},
         {field: "id", headerName: "ID", flex: .5},
-        {field: "price", headerName: "Price", flex: .5,
+        {
+            field: "price", headerName: "Price", flex: .5,
             valueGetter: (params) => `${params.row.price}€`
         },
     ];
 
     return (
-        <>
-            {
-                deliveries.length === 0 ?
-                    (
-                        <CircularProgress/>
-                    ) : (
-                        <DataGrid
-                            rows={deliveries}
-                            columns={columns}
-                            pageSize={pageSize}
-                            onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
-                            rowsPerPageOptions={[5, 10, 15]}
-                            pagination
-                            autoHeight
-                            disableSelectionOnClick
-                        />
-                    )
-            }
-        </>
+        <DataGrid
+            rows={deliveries}
+            columns={columns}
+            pageSize={pageSize}
+            onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+            rowsPerPageOptions={[5, 10, 15]}
+            pagination
+            autoHeight
+            disableSelectionOnClick
+        />
     );
 };
 

@@ -27,26 +27,17 @@ const RidersDataGrid = ({ridersInfo}) => {
     const handleOnCellClick = (params) => navigate(`${URI.RIDERS}/${params.id}`);
 
     return (
-        <>
-            {
-                ridersInfo.length === 0 ?
-                    (
-                        <CircularProgress/>
-                    ) : (
-                        <DataGrid
-                            rows={ridersInfo}
-                            columns={columns}
-                            pageSize={pageSize}
-                            onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
-                            rowsPerPageOptions={[5, 10, 15]}
-                            pagination
-                            autoHeight
-                            disableSelectionOnClick
-                            onCellClick={handleOnCellClick}
-                        />
-                    )
-            }
-        </>
+        <DataGrid
+            rows={ridersInfo}
+            columns={columns}
+            pageSize={pageSize}
+            onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+            rowsPerPageOptions={[5, 10, 15]}
+            pagination
+            autoHeight
+            disableSelectionOnClick
+            onCellClick={handleOnCellClick}
+        />
     );
 }
 
