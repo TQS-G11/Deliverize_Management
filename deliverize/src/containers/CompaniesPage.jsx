@@ -1,24 +1,46 @@
-import {Grid, Paper} from "@mui/material";
+import {Alert, Grid, Paper} from "@mui/material";
 import CompaniesDataGrid from "../components/CompaniesDataGrid";
 import {useEffect, useState} from "react";
-import PROTOTYPE from "../constants/PROTOTYPE";
 import {findUsersByRole} from "../api/Api";
+import LoginForm from "../components/LoginForm";
 
 const CompaniesPage = () => {
     const [companies, setCompanies] = useState([]);
 
+    const fetchCompanies = () => {
+        findUsersByRole("COMPANY")
+            .then((response) => {
+                setCompanies(response.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }
+
     useEffect(() => {
-        findUsersByRole()
-            .then()
-        setCompanies(PROTOTYPE.COMPANIES);
+        if (window.localStorage.getItem("token"))
+            fetchCompanies();
     }, []);
 
     return (
-        <Paper sx={{m: 2}}>
-            <Grid container justifyContent="center">
-                <CompaniesDataGrid companies={companies}/>
-            </Grid>
-        </Paper>
+        <>
+            {window.localStorage.getItem("token") === null ?
+                (
+                    <Grid container justifyContent="center">
+                        <Alert severity="warning" variant="filled" sx={{mt: 2, maxWidth: 500}}>
+                            Log in as a manager to access companies.
+                        </Alert>
+                        <LoginForm/>
+                    </Grid>
+                ) : (
+                    <Paper sx={{m: 2}}>
+                        <Grid container justifyContent="center">
+                            <CompaniesDataGrid companies={companies} fetchCompanies={fetchCompanies}/>
+                        </Grid>
+                    </Paper>
+                )
+            }
+        </>
     );
 }
 

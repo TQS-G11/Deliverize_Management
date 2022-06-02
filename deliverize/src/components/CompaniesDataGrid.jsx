@@ -1,28 +1,61 @@
 import {DataGrid} from "@mui/x-data-grid";
 import {Avatar, Button, Typography} from "@mui/material";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import URI from "../constants/URI";
 import {useNavigate} from "react-router-dom";
+import {changeCompanyStatus} from "../api/Api";
 
-const CompaniesDataGrid = ({companies}) => {
+const CompaniesDataGrid = ({companies, fetchCompanies}) => {
     const navigate = useNavigate();
 
     const [pageSize, setPageSize] = useState(10);
+    const [hasChanges, setHasChanges] = useState(false)
 
-    const statuses = ["Active", "Awaiting Approval", "Blacklisted"];
+    useEffect(() => {
+        fetchCompanies()
+    }, [hasChanges])
 
-    const handleOnCellClick = (params) => navigate(`${URI.COMPANIES}/${params.id}`);
+    const statuses = ["APPROVED", "PENDING", "BLACKLISTED"];
 
     const companyActionButton = (row) => {
-        switch (row.status) {
+        switch (row.companyStatus) {
             case statuses[0]:
-                return <Button variant="contained" fullWidth={true} color="error">Blacklist</Button>;
+                return <Button
+                    variant="contained"
+                    fullWidth={true}
+                    color="error"
+                    onClick={() => {
+                        changeCompanyStatus({id: row.id, companyStatus: statuses[2]});
+                        setHasChanges(!hasChanges);
+                    }}
+                >
+                    Blacklist
+                </Button>;
             case statuses[1]:
-                return <Button variant="contained" fullWidth={true} color="success">Approve</Button>;
+                return <Button
+                    variant="contained"
+                    fullWidth={true}
+                    color="success"
+                    onClick={() => {
+                        changeCompanyStatus({id: row.id, companyStatus: statuses[0]});
+                        setHasChanges(!hasChanges);
+                    }}
+                >
+                    Approve
+                </Button>;
             case statuses[2]:
-                return <Button variant="contained" fullWidth={true}>Enable</Button>;
+                return <Button
+                    variant="contained"
+                    fullWidth={true}
+                    onClick={() => {
+                        changeCompanyStatus({id: row.id, companyStatus: statuses[1]});
+                        setHasChanges(!hasChanges);
+                    }}
+                >
+                    Enable
+                </Button>;
             default:
-                return <Typography>Invalid status: {row.status}</Typography>;
+                return <Typography>Invalid status: {row.companyStatus}</Typography>;
         }
     }
 
@@ -38,10 +71,10 @@ const CompaniesDataGrid = ({companies}) => {
             renderCell: (params) => <Typography
                 onClick={() => navigateToCompany(params.row.id)}>{params.row.name}</Typography>
         },
-        {field: "description", headerName: "Description", flex: 1},
-        {field: "nDeliveries", headerName: "# Deliveries", type: "number", flex: 1},
+        // {field: "description", headerName: "Description", flex: 1},
+        // {field: "nDeliveries", headerName: "# Deliveries", type: "number", flex: 1},
         {field: "id", headerName: "ID", flex: 1},
-        {field: "status", headerName: "Status", type: "singleSelect", valueOptions: statuses, flex: 1},
+        {field: "companyStatus", headerName: "Status", type: "singleSelect", valueOptions: statuses, flex: 1},
         {
             field: null, headerName: "Action", flex: 1, sortable: false, filterable: false,
             renderCell: (params) => companyActionButton(params.row)
