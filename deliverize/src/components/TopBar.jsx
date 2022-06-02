@@ -3,6 +3,7 @@ import {AppBar, Box, Button, Chip, Container, Grid, IconButton, Link, Menu, Menu
 import URI from "../constants/URI";
 import React, {useState} from "react";
 import MenuIcon from '@mui/icons-material/Menu';
+import {useNavigate} from "react-router-dom";
 
 
 const pages = {
@@ -13,6 +14,8 @@ const pages = {
 
 
 const TopBar = () => {
+    const navigate = useNavigate();
+
     const onLogout = () => {
         window.localStorage.clear();
         window.location.reload();
@@ -73,7 +76,8 @@ const TopBar = () => {
                         >
                             {Object.keys(pages).map((k) => (
                                 <MenuItem key={k} onClick={handleCloseNavMenu}>
-                                    <Link href={pages[k]} textAlign="center" underline="none">{k}</Link>
+                                    <Link textAlign="center" underline="none"
+                                          onClick={() => navigate(pages[k])}>{k}</Link>
                                 </MenuItem>
                             ))}
                         </Menu>
@@ -82,8 +86,7 @@ const TopBar = () => {
                         {Object.keys(pages).map((k) => (
                             <Button
                                 key={k}
-                                onClick={handleCloseNavMenu}
-                                href={pages[k]}
+                                onClick={() => navigate(pages[k])}
                                 sx={{my: 2, color: 'white', display: 'block'}}
                             >
                                 {k}
@@ -99,50 +102,53 @@ const TopBar = () => {
                                         <Button
                                             variant="contained"
                                             color="secondary"
-                                            href="/login"
+                                            onClick={() => navigate(URI.LOGIN)}
                                         >
                                             Log in
-                                        </Button>
-                                    </Grid>
-                                    <Grid item>
-                                        <Button
-                                            variant="contained"
-                                            color="secondary"
-                                            href="/signup"
-                                            disabled={true}
-                                        >
-                                            Sign up
                                         </Button>
                                     </Grid>
                                 </Grid>
                             </Box>
                         ) : (
                             <Box sx={{flexGrow: 0}}>
-                                <Tooltip title="Open settings">
-                                    <IconButton onClick={handleOpenUserMenu} sx={{p: 0}}>
-                                        <Chip label={window.localStorage.getItem("username")} variant="outlined"/>
-                                    </IconButton>
-                                </Tooltip>
-                                <Menu
-                                    sx={{mt: '45px'}}
-                                    id="menu-appbar"
-                                    anchorEl={anchorElUser}
-                                    anchorOrigin={{
-                                        vertical: 'top',
-                                        horizontal: 'right',
-                                    }}
-                                    keepMounted
-                                    transformOrigin={{
-                                        vertical: 'top',
-                                        horizontal: 'right',
-                                    }}
-                                    open={Boolean(anchorElUser)}
-                                    onClose={handleCloseUserMenu}
-                                >
-                                    <MenuItem onClick={handleCloseUserMenu}>
-                                        <Link textAlign="center" onClick={onLogout}>Sign out</Link>
-                                    </MenuItem>
-                                </Menu>
+                                <Grid container spacing={1} justifyContent="flex-end">
+                                    <Grid item>
+                                        <Button
+                                            variant="contained"
+                                            color="secondary"
+                                            onClick={() => navigate(URI.REGISTER_COMPANY)}
+                                        >
+                                            Register Company
+                                        </Button>
+                                    </Grid>
+                                    <Grid item>
+                                        <Tooltip title="Open settings">
+                                            <IconButton onClick={handleOpenUserMenu} sx={{p: 0}}>
+                                                <Chip label={window.localStorage.getItem("username")} variant="outlined"/>
+                                            </IconButton>
+                                        </Tooltip>
+                                        <Menu
+                                            sx={{mt: '45px'}}
+                                            id="menu-appbar"
+                                            anchorEl={anchorElUser}
+                                            anchorOrigin={{
+                                                vertical: 'top',
+                                                horizontal: 'right',
+                                            }}
+                                            keepMounted
+                                            transformOrigin={{
+                                                vertical: 'top',
+                                                horizontal: 'right',
+                                            }}
+                                            open={Boolean(anchorElUser)}
+                                            onClose={handleCloseUserMenu}
+                                        >
+                                            <MenuItem onClick={handleCloseUserMenu}>
+                                                <Link textAlign="center" onClick={onLogout}>Sign out</Link>
+                                            </MenuItem>
+                                        </Menu>
+                                    </Grid>
+                                </Grid>
                             </Box>
                         )
                     }

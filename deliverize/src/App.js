@@ -11,6 +11,7 @@ import CompaniesPage from "./containers/CompaniesPage";
 import RidersManagementPage from "./containers/RidersManagementPage";
 import RiderDetailsPage from "./containers/RiderDetailsPage";
 import CompanyDetailsPage from "./containers/CompanyDetailsPage";
+import RegisterCompanyForm from "./components/RegisterCompanyForm";
 
 function App() {
     const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
@@ -40,6 +41,7 @@ const getPublicRoutes = () => {
         <Routes>
             <Route path="*" element={<HomePage/>}/>
             <Route path={URI.LOGIN} element={<LoginForm/>}/>
+            <Route path={URI.REGISTER_COMPANY} element={<RegisterCompanyForm/>}/>
             <Route path={URI.COMPANIES} element={<CompaniesPage/>}/>
             <Route path={URI.RIDERS} element={<RidersManagementPage/>}/>
             <Route path={`${URI.RIDERS}/:id`} element={<RiderDetailsPage/>}/>
