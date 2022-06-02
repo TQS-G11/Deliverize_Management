@@ -2,7 +2,7 @@ const URI = {
     HOME: "/",
     LOGIN: "/login",
     COMPANIES: "/companies",
-    RIDERS: "/riders"
+    RIDERS: "/riders",
 }
 
 export default URI;

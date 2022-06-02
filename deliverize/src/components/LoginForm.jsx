@@ -51,13 +51,11 @@ const LoginForm = () => {
             Accept: 'application/json',
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*',
-            // "Origin":"http://localhost:3000/"
 
         }
         axios.post(`${process.env.REACT_APP_DELIVERIZE_API_URL}/api/users/login`, userLogin, {
             headers: headers
         })
-        // fetch()
             .then(response => response.data)
             .then(response => {
                 console.log("login response", response)
