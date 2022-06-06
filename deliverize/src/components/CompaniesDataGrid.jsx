@@ -71,8 +71,6 @@ const CompaniesDataGrid = ({companies, fetchCompanies}) => {
             renderCell: (params) => <Typography
                 onClick={() => navigateToCompany(params.row.id)}>{params.row.name}</Typography>
         },
-        // {field: "description", headerName: "Description", flex: 1},
-        // {field: "nDeliveries", headerName: "# Deliveries", type: "number", flex: 1},
         {field: "id", headerName: "ID", flex: 1},
         {field: "companyStatus", headerName: "Status", type: "singleSelect", valueOptions: statuses, flex: 1},
         {
