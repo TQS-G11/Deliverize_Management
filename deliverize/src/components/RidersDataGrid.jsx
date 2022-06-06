@@ -9,7 +9,7 @@ const RidersDataGrid = ({ridersInfo}) => {
 
     const columns = [
         {
-            field: "pfp", headerName: "",
+            field: "img", headerName: "",
             renderCell: (params) => {
                 console.log(params);
                 return <Avatar src={params.row.pfp}/>
@@ -17,8 +17,8 @@ const RidersDataGrid = ({ridersInfo}) => {
         },
         {field: "username", headerName: "Username", flex: 1},
         {field: "name", headerName: "Name", flex: 1},
-        {field: "rating", headerName: "Rating", type: "number", flex: 1, valueGetter: ({value}) => value.toFixed(1)},
-        {field: "nDeliveries", headerName: "# Deliveries Made", type: "number", flex: 1},
+        {field: "riderRating", headerName: "Rating", type: "number", flex: 1, valueGetter: ({value}) => value.toFixed(1)},
+        // {field: "nDeliveries", headerName: "# Deliveries Made", type: "number", flex: 1},
         {field: "id", headerName: "ID", flex: 1},
     ];
 
