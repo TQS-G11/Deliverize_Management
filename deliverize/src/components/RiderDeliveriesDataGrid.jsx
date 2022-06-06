@@ -1,30 +1,25 @@
-import {Avatar, CircularProgress} from "@mui/material";
 import {DataGrid} from "@mui/x-data-grid";
 import {useState} from "react";
 
 const RiderDeliveriesDataGrid = ({deliveries}) => {
     const columns = [
-        {
-            field: "companyImg", headerName: "", sortable: false, filterable: false,
-            renderCell: (params) => <Avatar src={params.row.companyImg}/>,
-        },
         {field: "company", headerName: "Company", flex: 1},
         {
-            field: "orderDateTime",
+            field: "orderedAt",
             headerName: "Ordered",
             type: "dateTime",
             flex: 1,
             valueGetter: ({value}) => value && new Date(value)
         },
         {
-            field: "deliveryDateTime",
+            field: "deliveredAt",
             headerName: "Delivered",
             type: "dateTime",
             flex: 1,
             valueGetter: ({value}) => value && new Date(value)
         },
         {field: "buyer", headerName: "Buyer", type: "number", flex: 1},
-        {field: "id", headerName: "ID", flex: 1},
+        {field: "id", headerName: "ID", flex: .5},
     ];
 
     const [pageSize, setPageSize] = useState(10);

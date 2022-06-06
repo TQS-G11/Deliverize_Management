@@ -17,16 +17,13 @@ const CompanyDetails = ({details}) => {
                                 <Typography>ID: {details["id"]}</Typography>
                             </Grid>
                             <Grid container item justifyContent="center" xs={12}>
-                                <Typography variant="h6">Status: {details["status"]}</Typography>
+                                <Typography variant="h6">Status: {details["companyStatus"]}</Typography>
                             </Grid>
                             <Grid container item justifyContent="center" xs={12}>
                                 <Typography variant="h6">Deliveries: {details["nDeliveries"]}</Typography>
                             </Grid>
                             <Grid container item justifyContent="center" xs={12}>
-                                <Typography variant="h6">Registered: {details["registered"]}</Typography>
-                            </Grid>
-                            <Grid container item justifyContent="center" xs={12}>
-                                <Typography align="justify">{details["description"]}</Typography>
+                                <Typography align="justify">{details["companyDescription"]}</Typography>
                             </Grid>
                         </>
                     ) : (
