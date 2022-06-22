@@ -48,7 +48,7 @@ const CompaniesDataGrid = ({companies, fetchCompanies}) => {
                     variant="contained"
                     fullWidth={true}
                     onClick={() => {
-                        changeCompanyStatus({id: row.id, companyStatus: statuses[1]});
+                        changeCompanyStatus({id: row.id, companyStatus: statuses[0]});
                         setHasChanges(!hasChanges);
                     }}
                 >
