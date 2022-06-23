@@ -1,11 +1,23 @@
 import {DataGrid} from "@mui/x-data-grid";
 import {useState} from "react";
+import {Typography} from "@mui/material";
+import {useNavigate} from "react-router-dom";
+import URI from "../constants/URI";
 
 const RiderDeliveriesDataGrid = ({deliveries}) => {
+    const navigate = useNavigate();
+
+    const navigateToCompany = (companyId) => navigate(`${URI.COMPANIES}/${companyId}`);
+
     const columns = [
-        {field: "company", headerName: "Company", flex: 1},
         {
-            field: "orderedAt",
+            field: "company", headerName: "Company", flex: 1,
+            valueGetter: (params) => params.row.company.name,
+            renderCell: (params) => <Typography
+                onClick={() => navigateToCompany(params.row.company.id)}>{params.row.company.name}</Typography>
+        },
+        {
+            field: "requestedAt",
             headerName: "Ordered",
             type: "dateTime",
             flex: 1,
