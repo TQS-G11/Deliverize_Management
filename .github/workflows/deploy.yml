@@ -32,4 +32,4 @@ jobs:
             docker rm deliverizefrontend
             git pull
             docker build -t deliverizefrontend_image .
-            docker run -p 3030:3000 --name deliverizefrontend deliverizefrontend_image
+            docker run -p 3030:3000 --name deliverizefrontend -d deliverizefrontend_image
